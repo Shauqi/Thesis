@@ -3,6 +3,8 @@
 ###################################################################
 
 from pathlib import Path
+from getting_Best_indexes_from_graph import getting_best_indexes_from_graph
+from PlotGraphFromCSV import plot
 import os
 import glob
 
@@ -31,21 +33,21 @@ def finding_src_dst(source_path, graph=0, optimized_index=0):
             for csv_dir in sub_sub_dir:     # Accessing Each csv folder like 101_Dulia_Begum_F55_GL=24.5
                 for file in csv_dir.glob('*_blue.csv'):  # For Accessing blue.csv files
                     if graph == 1:
-                        graph = 0
+                        plot(file, os.path.join(csv_dir,"blue"))
                     if optimized_index == 1:
-                        optimized_index = 0
+                        getting_best_indexes_from_graph(file,csv_dir,blue=1)
                 for file in csv_dir.glob('*_red.csv'):   # For Accessing blue.csv files
                     if graph == 1:
-                        graph = 0
+                        plot(file, os.path.join(csv_dir, "red"))
                     if optimized_index == 1:
-                        optimized_index = 0
+                        getting_best_indexes_from_graph(file, csv_dir,red=1)
                 for file in csv_dir.glob('*_green.csv'):    # For Accessing blue.csv files
                     if graph == 1:
-                        graph = 0
+                        plot(file, os.path.join(csv_dir, "green"))
                     if optimized_index == 1:
-                        optimized_index = 0
+                        getting_best_indexes_from_graph(file, csv_dir,green=1)
 
 
 
 source_path = "C:/Users/User/Google Drive/DATA/850nm_new"
-finding_src_dst(source_path)
+finding_src_dst(source_path,graph=1,optimized_index=0)
